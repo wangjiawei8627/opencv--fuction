@@ -1,0 +1,78 @@
+#读取图像
+import numpy as np
+import cv2
+
+'''
+cv2.imread()  加载图像
+下面三个参数
+cv2.IMREAD_CPLOR 彩色图像
+CV2.IMREAD_GRAYSCALE 灰度图
+CV2.IMREAD_UNCHANGED 加载图像，包括alpha 通道
+
+可以用1，0，-1 表示这三个参数
+'''
+'''
+例如加载灰度图
+img = cv2.imread('要加载的图像.png',0)
+'''
+img = cv2.imread('要加载的图像.png',0)
+
+#显示图像
+cv2.imshow()
+
+'''
+cv.imshow('image', img)#image 是打开的窗口的名字
+cv.waitKey(0)
+cv.destroyAllWindows() 这是摧毁所有窗口
+cv2.destroyWindow(窗口的名字)关闭指定窗口
+
+
+cv.namedWindow('image', cv.WINDOW_NORMAL) 先创建空窗口再加载，参数为cv.WINDOW_NORMAL的时候可以指定尺寸，默认是CV2.WINDOW_AUTOSIZE
+cv.imshow('image',img)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+
+'''
+#保存图像
+cv2.imwrite('文件名'，路径)
+
+
+#matplotlib
+from matplotlib import pyplot as plt
+
+img = cv2.imread('test.png',0)
+plt.imshow(img,cmap='grey',interpolation='bicubic')
+plt.xticks([]),ply.yticks([])#隐藏X和Y轴的刻度
+plt.show()
+
+'''
+opencv 是 BGR 颜色，matplotlib 是 RGB，如果用opencv加载，需要经过一些处理再放到matploylib ，否则颜色会有问题
+'''
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread('messi4.jpg')
+b,g,r = cv2.split(img)
+img2 = cv2.merge([r,g,b])
+plt.subplot(121);plt.imshow(img) # expects distorted color
+plt.subplot(122);plt.imshow(img2) # expect true color
+plt.show()
+
+cv2.imshow('bgr image',img) # expects true color
+cv2.imshow('rgb image',img2) # expects distorted color
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+
+
+
+
+
+
+
+
+
+
